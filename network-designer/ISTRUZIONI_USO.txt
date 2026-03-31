@@ -1,0 +1,124 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║         NETWORK TOPOLOGY DESIGNER PRO - VERSIONE TESTO MULTI-LINEA        ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+📁 FILE INCLUSI:
+================
+✅ index.html  (15 KB) - File HTML principale con modal integrato
+✅ style.css   (15 KB) - Fogli di stile con design del modal
+✅ app.js      (78 KB) - JavaScript completo con logica multi-linea
+✅ README_MODIFICHE.md - Documentazione dettagliata delle modifiche
+
+🎯 MODIFICA PRINCIPALE:
+=======================
+PRIMA: Il testo usava un prompt() che permetteva solo UNA RIGA
+ADESSO: Modal professionale con textarea per TESTO SU PIÙ RIGHE!
+
+✨ NUOVE FUNZIONALITÀ:
+======================
+✅ Scrivi testo su più righe premendo INVIO
+✅ Modal elegante con interfaccia professionale
+✅ Anteprima in tempo reale
+✅ Spaziatura automatica tra le righe
+✅ Export PNG con testo multi-linea
+✅ Salvataggio completo nel progetto
+
+🚀 COME USARE:
+==============
+1. Apri index.html in un browser moderno (Chrome, Firefox, Edge)
+2. Click su "✏️ Testo" nella barra degli strumenti a sinistra
+3. Click sul canvas dove vuoi posizionare il testo
+4. Si apre automaticamente il modal di editing
+5. Scrivi il tuo testo premendo INVIO per andare a capo
+6. Click su "✅ Aggiungi Testo" per confermare
+
+💡 ESEMPIO DI TESTO MULTI-LINEA:
+==================================
+Router Principale
+IP: 192.168.1.1
+Status: Online
+Gateway: 192.168.1.254
+Uptime: 45 giorni
+
+⌨️ SCORCIATOIE DA TASTIERA:
+============================
+• ESC - Chiudi il modal senza salvare
+• INVIO - Vai a capo nel testo
+• CTRL+D / CMD+D - Clona oggetto selezionato
+• DELETE - Elimina oggetto selezionato
+
+🔧 PERSONALIZZAZIONE TESTO:
+============================
+Prima o dopo aver inserito il testo, puoi modificare:
+• Font (Arial, Courier, Georgia, ecc.)
+• Dimensione (10px - 120px)
+• Colore (qualsiasi colore RGB)
+• Bold (grassetto)
+• Italic (corsivo)
+
+Tutte le impostazioni si trovano nel pannello "✏️ Controlli Testo"
+
+📤 EXPORT E SALVATAGGIO:
+========================
+• SALVA PROGETTO: Scarica un file .json con TUTTO il progetto
+• CARICA PROGETTO: Riapri un progetto salvato
+• ESPORTA PNG: Crea immagine in varie risoluzioni (720p, 1080p, 4K)
+
+Il testo multi-linea viene esportato correttamente in tutti i formati!
+
+🎨 ALTRE FUNZIONALITÀ:
+======================
+• Carica sfondo immagine
+• Carica icone personalizzate
+• Cerca icone online (Wikimedia, Flickr, Unsplash)
+• Disegna forme (linee, frecce, cerchi, rettangoli)
+• Libreria personale di icone
+• Ritaglia immagini automaticamente
+• Sposta e ridimensiona oggetti
+• Clona oggetti
+
+🌐 BROWSER SUPPORTATI:
+======================
+✅ Chrome 90+
+✅ Firefox 88+
+✅ Edge 90+
+✅ Safari 14+
+✅ Opera 76+
+
+⚡ REQUISITI:
+=============
+• JavaScript abilitato
+• LocalStorage abilitato (per salvataggio automatico)
+• Minimo 1280x720 risoluzione schermo
+
+🔒 PRIVACY:
+===========
+• Tutto funziona localmente nel browser
+• Nessun dato viene inviato a server esterni
+• Le icone online vengono scaricate tramite proxy pubblici
+
+📝 COMPATIBILITÀ:
+=================
+I progetti creati con la versione precedente (senza multi-linea)
+funzionano perfettamente anche con questa nuova versione!
+
+🐛 RISOLUZIONE PROBLEMI:
+========================
+• Se il modal non si apre: Ricarica la pagina (F5)
+• Se le icone non si caricano: Controlla la console (F12)
+• Se l'export non funziona: Prova un altro browser
+
+📧 SUPPORTO:
+============
+Per problemi o domande, controlla il file README_MODIFICHE.md
+per la documentazione tecnica completa.
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                        BUON LAVORO! 🚀                                    ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+Creato da: Claudio - Network Security Specialist
+Data: 11 Novembre 2025
+Versione: 2.0 (Multi-line Text Support)

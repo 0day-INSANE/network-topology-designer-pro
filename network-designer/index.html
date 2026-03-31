@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Topology Designer Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar - All Controls -->
+        <div class="toolbar">
+            <h1>🔒 Network Topology Designer Pro</h1>
+            
+            <!-- File Upload Section -->
+            <div class="section-header">📁 File</div>
+            <div class="controls">
+                <div class="control-group">
+                    <label class="btn" for="bgUpload">🖼 Carica Sfondo</label>
+                    <input type="file" id="bgUpload" accept="image/*" hidden>
+                    
+                    <label class="btn" for="iconUpload">🖼️ Carica Icone</label>
+                    <input type="file" id="iconUpload" accept="image/*" hidden multiple>
+                </div>
+            </div>
+
+            <!-- Background Controls -->
+            <div id="bgControls" class="panel-controls" style="display: none;">
+                <div class="section-header">🖼 Controlli Sfondo</div>
+                <div class="control-row">
+                    <label>Larghezza: <span id="bgWidthValue">100</span>%</label>
+                    <input type="range" id="bgWidth" min="10" max="300" value="100">
+                </div>
+                <div class="control-row">
+                    <label>Altezza: <span id="bgHeightValue">100</span>%</label>
+                    <input type="range" id="bgHeight" min="10" max="300" value="100">
+                </div>
+                <div class="control-row">
+                    <label>Opacità: <span id="bgOpacityValue">100</span>%</label>
+                    <input type="range" id="bgOpacity" min="0" max="100" value="100">
+                </div>
+                <button id="resetBgBtn" class="btn btn-small">↻ Reset</button>
+            </div>
+
+            <!-- Tools Section -->
+            <div class="section-header">🛠️ Strumenti</div>
+            <div class="controls">
+                <div class="control-group">
+                    <button class="btn tool-btn" data-tool="move">✋ Sposta</button>
+                    <button class="btn tool-btn active" data-tool="select">🔲 Seleziona</button>
+                    <button class="btn tool-btn" data-tool="delete">🗑️ Cancella</button>
+                    <button class="btn tool-btn" data-tool="crop">✂️ Ritaglia</button>
+                    <button class="btn tool-btn" data-tool="line">📏 Linea</button>
+                    <button class="btn tool-btn" data-tool="arrow">➡️ Freccia</button>
+                    <button class="btn tool-btn" data-tool="curve">〰️ Curva</button>
+                    <button class="btn tool-btn" data-tool="circle">⭕ Cerchio</button>
+                    <button class="btn tool-btn" data-tool="rect">⬜ Rettangolo</button>
+                    <button class="btn tool-btn" data-tool="text">✏️ Testo</button>
+                </div>
+            </div>
+
+            <!-- Crop Controls -->
+            <div id="cropControls" class="panel-controls" style="display: none;">
+                <h4>✂️ Ritaglia Immagine</h4>
+                <div class="control-row">
+                    <button id="autoCropBtn" class="btn btn-small">🎯 Auto-Rimuovi Bordi Bianchi</button>
+                </div>
+                <div class="control-row">
+                    <button id="manualCropBtn" class="btn btn-small">✂️ Ritaglia Manuale</button>
+                </div>
+                <div class="control-row">
+                    <label>Margine: <span id="cropMarginValue">10</span>px</label>
+                    <input type="range" id="cropMargin" min="0" max="50" value="10">
+                </div>
+                <p style="color: #999; font-size: 0.75rem; margin-top: 5px;">
+                    1. Seleziona un'immagine<br>
+                    2. Auto-rimuovi bordi bianchi automaticamente<br>
+                    3. Oppure ritaglia manualmente
+                </p>
+            </div>
+
+            <!-- Object Properties Panel -->
+            <div id="objectProperties" class="panel-controls" style="display: none;">
+                <h4>🔧 Proprietà Oggetto</h4>
+                <div id="objectPropertiesContent"></div>
+                <button id="cloneObjectBtn" class="btn btn-success" style="margin-top: 10px;">
+                    📋 Clona Oggetto
+                </button>
+            </div>
+
+            <!-- Drawing Controls -->
+            <div id="drawingControls" class="panel-controls" style="display: none;">
+                <h4>🎨 Controlli Disegno</h4>
+                <div class="control-row">
+                    <label>Colore:</label>
+                    <input type="color" id="drawColor" value="#4fc3f7">
+                </div>
+                <div class="control-row" style="flex-wrap: wrap; gap: 5px;">
+                    <button class="color-preset" data-color="#ff5252"></button>
+                    <button class="color-preset" data-color="#4fc3f7"></button>
+                    <button class="color-preset" data-color="#66bb6a"></button>
+                    <button class="color-preset" data-color="#ffa726"></button>
+                    <button class="color-preset" data-color="#ffffff"></button>
+                </div>
+                <div class="control-row">
+                    <label>Spessore: <span id="thicknessValue">3</span>px</label>
+                    <input type="range" id="drawThickness" min="1" max="30" value="3">
+                </div>
+                <div class="control-row">
+                    <label>
+                        <input type="checkbox" id="neonEffect">
+                        ✨ Effetto Neon
+                    </label>
+                </div>
+                <div class="control-row">
+                    <label>
+                        <input type="checkbox" id="dashedLine">
+                        - - Tratteggiata
+                    </label>
+                </div>
+            </div>
+
+            <!-- Text Controls -->
+            <div id="textControls" class="panel-controls" style="display: none;">
+                <h4>✏️ Controlli Testo</h4>
+                <div class="control-row">
+                    <label>Font:</label>
+                    <select id="fontFamily">
+                        <option value="Arial">Arial</option>
+                        <option value="'Courier New'">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="'Times New Roman'">Times New Roman</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Consolas">Consolas</option>
+                        <option value="'Segoe UI'">Segoe UI</option>
+                        <option value="monospace">Monospace</option>
+                    </select>
+                </div>
+                <div class="control-row">
+                    <label>Dimensione: <span id="fontSizeValue">24</span>px</label>
+                    <input type="range" id="fontSize" min="10" max="120" value="24">
+                </div>
+                <div class="control-row">
+                    <label>Colore:</label>
+                    <input type="color" id="textColor" value="#ffffff">
+                </div>
+                <div class="control-row">
+                    <label>
+                        <input type="checkbox" id="textBold">
+                        <strong>Bold</strong>
+                    </label>
+                    <label>
+                        <input type="checkbox" id="textItalic">
+                        <em>Italic</em>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="section-header">💾 Azioni</div>
+            <div class="controls">
+                <div class="control-group">
+                    <button id="saveBtn" class="btn btn-success">💾 Salva Progetto</button>
+                    <button id="loadBtn" class="btn btn-info">📂 Carica Progetto</button>
+                    <input type="file" id="projectUpload" accept=".json" hidden>
+                    <button id="clearBtn" class="btn btn-danger">🗑️ Pulisci Canvas</button>
+                    <p style="color: #4fc3f7; font-size: 0.7rem; margin-top: 5px; line-height: 1.4;">
+                        ℹ️ Il progetto salva TUTTO: sfondo, icone, forme, testo. Puoi riaprirlo in qualsiasi momento!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Export Controls -->
+            <div class="section-header">📤 Esporta</div>
+            <div class="controls">
+                <div class="control-group">
+                    <div class="control-row">
+                        <label>Larghezza: <span id="exportWidthValue">1920</span>px</label>
+                        <input type="range" id="exportWidth" min="800" max="7680" value="1920" step="160">
+                    </div>
+                    <div class="control-row">
+                        <label>Altezza: <span id="exportHeightValue">1080</span>px</label>
+                        <input type="range" id="exportHeight" min="600" max="4320" value="1080" step="120">
+                    </div>
+                    <div class="control-row">
+                        <button id="preset720" class="btn btn-small">HD 720p</button>
+                        <button id="preset1080" class="btn btn-small">Full HD</button>
+                        <button id="preset4k" class="btn btn-small">4K</button>
+                    </div>
+                    <button id="exportBtn" class="btn btn-primary">📤 Esporta PNG</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Canvas and Icon Library -->
+        <div class="content-wrapper">
+            <!-- Canvas -->
+            <div class="canvas-container">
+                <div id="toolIndicator" class="tool-indicator">🔲 Seleziona</div>
+                <canvas id="bgCanvas"></canvas>
+                <canvas id="mainCanvas"></canvas>
+            </div>
+
+            <!-- Icon Library Panel -->
+            <div class="instructions-panel">
+                <div class="instructions-header" id="instructionsToggle">
+                    <h3>📚 Libreria Icone</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="instructions-content" id="instructionsContent">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <input type="text" id="iconSearch" placeholder="🔍 Cerca: firewall, router, server...">
+                        <button id="searchBtn" class="btn btn-small">Cerca</button>
+                        
+                        <div class="url-input-container">
+                            <div class="url-instructions">
+                                <strong>💡 Per Google Images:</strong><br>
+                                1. Cerca su Google Images<br>
+                                2. Click destro → "Apri immagine in nuova scheda"<br>
+                                3. Copia URL dalla barra e incolla qui 👇
+                            </div>
+                            <input type="text" id="directUrl" placeholder="🔗 Incolla URL immagine da Google Images">
+                            <button id="addUrlBtn" class="btn btn-small">Aggiungi al Canvas</button>
+                        </div>
+                        
+                        <div id="searchStatus" class="search-status"></div>
+                    </div>
+                    
+                    <!-- MY PERSONAL LIBRARY -->
+                    <div class="my-library-section">
+                        <div class="my-library-header">
+                            <h4>⭐ La Mia Libreria Personale</h4>
+                            <div class="my-library-buttons">
+                                <button id="saveToLibraryBtn" class="btn btn-small btn-success">⭐ Salva Selezionata</button>
+                                <button id="clearLibraryBtn" class="btn btn-small btn-danger">🗑️ Svuota</button>
+                            </div>
+                        </div>
+                        <div id="myLibraryGrid" class="my-library-grid">
+                            <p class="placeholder-small">Nessuna icona salvata. Seleziona un'icona dal canvas e clicca "⭐ Salva Selezionata"</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Icon Library -->
+                    <div id="iconLibrary" class="icon-library-bottom">
+                        <p class="placeholder">Carica icone dispositivi o cerca online<br>Clicca su un'icona per aggiungerla al canvas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Editor Modal - NOVITÀ: Modal per testo multi-linea -->
+    <div id="textEditorModal" class="text-modal" style="display: none;">
+        <div class="text-modal-content">
+            <div class="text-modal-header">
+                <h3>✏️ Editor Testo Multi-Linea</h3>
+                <button class="text-modal-close" id="closeTextModal">×</button>
+            </div>
+            <div class="text-modal-body">
+                <textarea id="textEditorArea" placeholder="Scrivi il tuo testo qui...
+
+Puoi andare a capo premendo Invio
+Ogni riga sarà visualizzata separatamente
+
+Esempio:
+Router Principale
+IP: 192.168.1.1
+Status: Online"></textarea>
+                <div class="text-modal-info">
+                    💡 <strong>Suggerimento:</strong> Premi <kbd>Invio</kbd> per andare a capo. Usa i controlli nella barra laterale per cambiare font, dimensione e colore prima o dopo aver inserito il testo.
+                </div>
+            </div>
+            <div class="text-modal-footer">
+                <button class="btn btn-danger" id="cancelTextBtn">❌ Annulla</button>
+                <button class="btn btn-success" id="confirmTextBtn">✅ Aggiungi Testo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
